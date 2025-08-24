@@ -10,10 +10,10 @@ async function userRouter(fastify: FastifyInstance) {
       schema: {
         body: {
           type: 'object',
-          required: ['email', 'password'],
+          required: ['login', 'password'],
           properties: {
-            email: { type: 'string', format: 'email' },
-            password: { type: 'string', minLength: 8 },
+            login: { type: 'string', minLength: 2, maxLength: 50 },
+            password: { type: 'string', minLength: 6, maxLength: 30 },
           },
         },
       },
@@ -31,12 +31,10 @@ async function userRouter(fastify: FastifyInstance) {
       schema: {
         body: {
           type: 'object',
-          required: ['email', 'password'],
+          required: ['login', 'password'],
           properties: {
-            email: { type: 'string', format: 'email' },
-            password: { type: 'string', minLength: 8 },
-            firstName: { type: 'string' },
-            lastName: { type: 'string' },
+            login: { type: 'string', minLength: 2, maxLength: 50 },
+            password: { type: 'string', minLength: 6, maxLength: 30 },
           },
         },
       },

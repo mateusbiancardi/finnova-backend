@@ -1,25 +1,21 @@
 import Joi from 'joi';
 
 export interface IUserLoginDto {
-  email: string;
+  login: string;
   password: string;
 }
 
 export interface IUserSignupDto {
-  email: string;
+  login: string;
   password: string;
-  firstName: string;
-  lastName: string;
 }
 
 export const loginSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().min(8).required(),
+  login: Joi.string().min(2).max(50).required(),
+  password: Joi.string().min(6).max(30).required(),
 });
 
 export const signupSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().min(8).required(),
-  firstName: Joi.string().optional(),
-  lastName: Joi.string().optional(),
+  login: Joi.string().min(2).max(50).required(),
+  password: Joi.string().min(6).max(30).required(),
 });

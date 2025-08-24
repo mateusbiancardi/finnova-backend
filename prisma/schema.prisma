@@ -13,26 +13,24 @@ generator client {
 
 model User {
   id         Int      @id @default(autoincrement())
-  email      String   @unique
-  first_name String?
-  last_name  String?
+  login      String   @unique
   password   String
-  profile    String?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  posts      Post[]
+  transactions      Transaction[]
 
   @@map("users")
 }
 
-model Post {
+model Transaction {
   id         Int      @id @default(autoincrement())
-  content    String
-  view_count Int
+  amount    Float
+  type      String
+  status    String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  created_by User     @relation(fields: [author_id], references: [id])
-  author_id  Int
+  user      User     @relation(fields: [user_id], references: [id])
+  user_id   Int
 }
 
 enum Role {
